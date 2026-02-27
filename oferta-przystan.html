@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oferta VoiceLink — Przystań Psychologiczna i Terapeutyczna</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --gradient-start: #00D9FF;
+            --gradient-mid: #7B2CBF;
+            --gradient-end: #9D4EDD;
+            --text-dark: #1A1A1A;
+            --text-gray: #6B7280;
+        }
+
+        @page { size: A4; margin: 15mm; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: #f0f2f5;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            padding: 18mm 20mm;
+            background: #fff;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            border-radius: 4px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            padding-bottom: 18px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .header-logo {
+            height: 100px;
+            width: auto;
+        }
+
+        .header-right {
+            text-align: right;
+        }
+
+        .header-title {
+            font-size: 17pt;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        .header-subtitle {
+            font-size: 10pt;
+            color: var(--text-gray);
+            margin-top: 4px;
+        }
+
+        .header-date {
+            font-size: 9pt;
+            color: var(--text-gray);
+            margin-top: 8px;
+        }
+
+        .block {
+            margin-bottom: 24px;
+        }
+
+        .block h2 {
+            font-size: 12pt;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(90deg, var(--gradient-start), var(--gradient-mid)) 1;
+        }
+
+        .block p, .block li {
+            font-size: 10pt;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .block ul {
+            padding-left: 18px;
+            margin-top: 6px;
+        }
+
+        .activity-card {
+            padding: 16px 18px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(0,217,255,0.06) 0%, rgba(123,44,191,0.08) 100%);
+            border: 1px solid rgba(0,217,255,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+        }
+
+        .activity-card .icon {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid));
+        }
+
+        .activity-card .icon svg {
+            width: 18px;
+            height: 18px;
+            fill: #fff;
+        }
+
+        .activity-card .title {
+            font-size: 10pt;
+            font-weight: 800;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .activity-card .desc {
+            font-size: 9pt;
+            line-height: 1.5;
+            color: var(--text-gray);
+        }
+
+        .table-wrap {
+            margin: 12px 0;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            box-shadow: 0 2px 12px rgba(0, 217, 255, 0.06);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10pt;
+        }
+
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.12) 0%, rgba(123, 44, 191, 0.12) 100%);
+            font-weight: 700;
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .info-box {
+            padding: 16px 18px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(0,217,255,0.05) 0%, rgba(123,44,191,0.07) 100%);
+            border: 1px solid rgba(0,217,255,0.2);
+        }
+
+        .info-box-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .info-box-icon {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-box-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: #fff;
+        }
+
+        .info-box-title {
+            font-size: 9.5pt;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .info-box-desc {
+            font-size: 8.5pt;
+            line-height: 1.5;
+            color: var(--text-gray);
+        }
+
+        .info-box.full {
+            grid-column: 1 / -1;
+        }
+
+        .booksy-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #FF6B8A 0%, #FF3366 100%);
+            color: #fff;
+            font-size: 9pt;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .booksy-badge svg {
+            width: 16px;
+            height: 16px;
+            fill: #fff;
+        }
+
+        .pricing-card {
+            max-width: 460px;
+            margin: 18px auto 0;
+            padding: 28px 28px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(0,217,255,0.08) 0%, rgba(123,44,191,0.12) 100%);
+            border: 2px solid rgba(123,44,191,0.4);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(123,44,191,0.15);
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+        }
+
+        .pricing-title {
+            font-size: 12pt;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-row {
+            padding: 14px 0;
+            border-top: 1px solid rgba(123,44,191,0.2);
+        }
+
+        .pricing-row:first-of-type {
+            border-top: none;
+        }
+
+        .pricing-label {
+            font-size: 9pt;
+            color: var(--text-gray);
+            margin-bottom: 2px;
+        }
+
+        .pricing-value {
+            font-size: 14pt;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .pricing-value.big {
+            font-size: 18pt;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-note {
+            font-size: 8pt;
+            color: var(--text-gray);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .summary-box {
+            padding: 20px 22px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(0,217,255,0.06) 0%, rgba(123,44,191,0.08) 100%);
+            border: 1px solid rgba(0,217,255,0.25);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+        }
+
+        .summary-label {
+            font-size: 9pt;
+            font-weight: 700;
+            color: var(--text-gray);
+            margin-bottom: 10px;
+        }
+
+        .summary-value {
+            font-size: 18pt;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .summary-value.gradient {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .summary-value.green {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .summary-detail {
+            font-size: 8.5pt;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 520px) {
+            .page {
+                width: 100%;
+                padding: 20px 16px;
+                margin: 0;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px;
+            }
+            .header-right {
+                text-align: center;
+            }
+            .header-logo {
+                height: 70px;
+            }
+            .header-title {
+                font-size: 14pt;
+            }
+            .info-grid,
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+            .info-box.full {
+                grid-column: auto;
+            }
+            .activity-cards-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media print {
+            body { background: #fff; }
+            .page { box-shadow: none; margin: 0; padding: 15mm; border-radius: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+
+        <header class="header">
+            <img src="logo.png" alt="VoiceLink" class="header-logo">
+            <div class="header-right">
+                <div class="header-title">Oferta dla <span class="gradient-text">Przystań Psychologiczna<br>i Terapeutyczna</span></div>
+                <div class="header-subtitle">Asystent głosowy AI — zarządzanie rezerwacjami via Booksy</div>
+                <div class="header-date">Data oferty: 27.02.2026</div>
+            </div>
+        </header>
+
+        <!-- 1. Wprowadzenie -->
+        <div class="block">
+            <h2>1. Wprowadzenie</h2>
+            <p>Niniejsza oferta dotyczy wdrożenia asystenta głosowego VoiceLink w dwóch komercyjnych placówkach <strong>Przystań Psychologiczna i Terapeutyczna</strong>. Asystent zostanie zintegrowany z systemem <strong>Booksy</strong> i przejmie telefoniczną obsługę rezerwacji — od umawiania wizyt, przez zmiany terminów, po odwoływanie spotkań. Dzięki temu recepcja zostanie odciążona, a klienci zyskają wygodny kontakt z placówką 24 godziny na dobę, 7 dni w tygodniu.</p>
+
+            <div class="info-grid">
+                <div class="info-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon" style="background: linear-gradient(135deg, #4CAF50, #81C784);">
+                            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                        </div>
+                        <div class="info-box-title">Bezpieczeństwo</div>
+                    </div>
+                    <div class="info-box-desc">Umowa z miesięcznym okresem wypowiedzenia — pełna elastyczność i swoboda bez długoterminowego zobowiązania.</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon" style="background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid));">
+                            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        </div>
+                        <div class="info-box-title">Specjalizacja</div>
+                    </div>
+                    <div class="info-box-desc">VoiceLink specjalizuje się we wdrożeniach AI w placówkach medycznych i terapeutycznych — zapewniamy pełne wsparcie techniczne i optymalizację.</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon" style="background: linear-gradient(135deg, #FF6B8A, #FF3366);">
+                            <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14zm-4.2-5.78v1.75l3.2-2.99L12.8 9v1.7c-3.11.43-4.35 2.56-4.8 4.7 1.11-1.55 2.69-2.2 4.8-2.18z"/></svg>
+                        </div>
+                        <div class="info-box-title">Integracja z Booksy</div>
+                    </div>
+                    <div class="info-box-desc">Asystent jest w pełni zintegrowany z systemem Booksy — rezerwacje, anulowania i zmiany terminów odbywają się automatycznie w czasie rzeczywistym.</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon" style="background: linear-gradient(135deg, #E53935, #EF5350);">
+                            <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                        </div>
+                        <div class="info-box-title">Ochrona danych</div>
+                    </div>
+                    <div class="info-box-desc">Dane klientów przetwarzane zgodnie z RODO. Stosujemy najwyższe standardy bezpieczeństwa — szyfrowanie i kontrola dostępu.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Opis asystenta -->
+        <div class="block">
+            <h2>2. Opis asystenta</h2>
+            <p style="padding: 16px 20px; border-radius: 12px; background: linear-gradient(135deg, rgba(0,217,255,0.06) 0%, rgba(123,44,191,0.08) 100%); border: 1px solid rgba(0,217,255,0.2); font-size: 10pt; line-height: 1.7; color: var(--text-dark);">
+                Asystent głosowy VoiceLink dla Przystani Psychologicznej i Terapeutycznej to inteligentny system telefoniczny, który w pełni automatyzuje zarządzanie rezerwacjami w Booksy. Odbiera połączenia przychodzące, umawia nowe wizyty, sprawdza dostępność specjalistów, zmienia terminy i anuluje rezerwacje — wszystko w naturalnej rozmowie z klientem. Stali klienci otrzymują potwierdzenia SMS, a nowi klienci są dodatkowo weryfikowani przez potwierdzenie telefoniczne. W sytuacjach wymagających indywidualnego podejścia asystent płynnie przekierowuje rozmowę do recepcji. System działa bez przerw — 24/7, obsługując obie placówki jednocześnie.
+            </p>
+        </div>
+
+        <!-- 3. Zakres usług -->
+        <div class="block">
+            <h2>3. Zakres usług i czynności asystenta</h2>
+            <p>Wdrożenie obejmuje konfigurację i stworzenie asystenta AI zintegrowanego z <strong>Booksy</strong>, dostosowanego do specyfiki obu placówek. Asystent realizuje pełną <strong>obsługę połączeń przychodzących</strong>:</p>
+
+            <div class="activity-cards-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 16px;">
+                <div class="activity-card">
+                    <div class="icon"><svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm-8 4H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg></div>
+                    <div class="title">Tworzenie rezerwacji</div>
+                    <div class="desc">Asystent umawia nowe wizyty — dobiera odpowiedniego specjalistę, sprawdza dostępność w Booksy i tworzy rezerwację w czasie rzeczywistym.</div>
+                </div>
+                <div class="activity-card">
+                    <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg></div>
+                    <div class="title">Anulowanie wizyt</div>
+                    <div class="desc">Klient może odwołać zaplanowaną wizytę telefonicznie — asystent anuluje rezerwację w Booksy i zwalnia termin dla innych.</div>
+                </div>
+                <div class="activity-card">
+                    <div class="icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div>
+                    <div class="title">Sprawdzanie dostępności</div>
+                    <div class="desc">Asystent na bieżąco sprawdza dostępność terminów w Booksy — informuje klienta o najbliższych wolnych terminach u wybranego specjalisty.</div>
+                </div>
+                <div class="activity-card">
+                    <div class="icon"><svg viewBox="0 0 24 24"><path d="M18 11l5-5-5-5v3h-4v4h4v3zm2 4.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg></div>
+                    <div class="title">Zmiana terminu wizyty</div>
+                    <div class="desc">Klient może przełożyć wizytę na inny termin — asystent anuluje starą rezerwację i tworzy nową w Booksy, informując o szczegółach.</div>
+                </div>
+                <div class="activity-card">
+                    <div class="icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+                    <div class="title">Potwierdzenia SMS</div>
+                    <div class="desc">Po umówieniu wizyty <strong>stali klienci</strong> automatycznie otrzymują SMS z potwierdzeniem — data, godzina, specjalista i adres placówki.</div>
+                </div>
+                <div class="activity-card">
+                    <div class="icon"><svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg></div>
+                    <div class="title">Potwierdzenia telefoniczne</div>
+                    <div class="desc"><strong>Nowi klienci</strong> otrzymują potwierdzenie telefoniczne — asystent dzwoni, potwierdza szczegóły wizyty i odpowiada na ewentualne pytania.</div>
+                </div>
+                <div class="activity-card" style="grid-column: 1 / -1;">
+                    <div class="icon"><svg viewBox="0 0 24 24"><path d="M18 11l5-5-5-5v3h-4v4h4v3zm2 4.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg></div>
+                    <div class="title">Przekierowanie do recepcji</div>
+                    <div class="desc">W sytuacjach wymagających indywidualnej obsługi — nietypowe pytania, sprawy administracyjne — asystent płynnie przekierowuje rozmowę do recepcji, zapewniając ciągłość obsługi.</div>
+                </div>
+            </div>
+
+            <p style="margin-top: 14px;">Dodatkowo: wsparcie wdrożeniowe i techniczne, comiesięczne raporty z analityką połączeń oraz cykliczne spotkania optymalizacyjne.</p>
+        </div>
+
+        <!-- 4. Cennik -->
+        <div class="block">
+            <h2>4. Warunki współpracy i cennik</h2>
+            <p>Poniżej przedstawiamy warunki współpracy. Oferta obejmuje wdrożenie dla <strong>dwóch placówek komercyjnych</strong> Przystań Psychologiczna i Terapeutyczna wraz z integracją z systemem Booksy.</p>
+
+            <!-- Wdrożenie -->
+            <div class="pricing-card">
+                <div class="pricing-title">Koszt wdrożenia</div>
+                <div class="pricing-row" style="border-top: none;">
+                    <div class="pricing-label">2 placówki + integracja Booksy</div>
+                    <div class="pricing-value big">10 000 zł</div>
+                    <div class="pricing-note">netto, jednorazowo</div>
+                </div>
+            </div>
+
+            <!-- Pakiety minut — wizualizacja słupkowa -->
+            <div style="margin-top: 22px; padding: 28px 28px 24px; border-radius: 16px; background: #fff; border: 1px solid rgba(0,217,255,0.2); box-shadow: 0 2px 16px rgba(0,217,255,0.06);">
+                <div style="font-size: 11pt; font-weight: 800; color: var(--text-dark); margin-bottom: 4px;">Pakiety minut — abonament miesięczny</div>
+                <div style="font-size: 8.5pt; color: var(--text-gray); margin-bottom: 28px;">Im większy pakiet, tym niższa stawka minutowa</div>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: flex-end;">
+                    <!-- 2 000 min -->
+                    <div style="text-align: center;">
+                        <div style="font-size: 11pt; font-weight: 800; background: linear-gradient(135deg, var(--gradient-end), var(--gradient-mid)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px;">0,55 zł / min</div>
+                        <div style="width: 80px; height: 180px; margin: 0 auto 14px; border-radius: 12px; background: linear-gradient(180deg, var(--gradient-end) 0%, var(--gradient-mid) 100%); box-shadow: 0 6px 20px rgba(123,44,191,0.25);"></div>
+                        <div style="font-size: 10pt; font-weight: 700; color: var(--text-dark);">2 000 min</div>
+                        <div style="font-size: 9.5pt; font-weight: 800; background: linear-gradient(135deg, var(--gradient-end), var(--gradient-mid)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-top: 2px;">1 100 zł / mies.</div>
+                    </div>
+                    <!-- 3 000 min -->
+                    <div style="text-align: center;">
+                        <div style="font-size: 11pt; font-weight: 800; background: linear-gradient(135deg, var(--gradient-mid), var(--gradient-start)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px;">0,50 zł / min</div>
+                        <div style="width: 80px; height: 140px; margin: 0 auto 14px; border-radius: 12px; background: linear-gradient(180deg, var(--gradient-mid) 0%, var(--gradient-start) 100%); box-shadow: 0 6px 20px rgba(0,217,255,0.25);"></div>
+                        <div style="font-size: 10pt; font-weight: 700; color: var(--text-dark);">3 000 min</div>
+                        <div style="font-size: 9.5pt; font-weight: 800; background: linear-gradient(135deg, var(--gradient-mid), var(--gradient-start)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-top: 2px;">1 500 zł / mies.</div>
+                    </div>
+                    <!-- 5 000 min -->
+                    <div style="text-align: center;">
+                        <div style="font-size: 11pt; font-weight: 800; background: linear-gradient(135deg, var(--gradient-start), #00B4D8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px;">0,45 zł / min</div>
+                        <div style="width: 80px; height: 100px; margin: 0 auto 14px; border-radius: 12px; background: linear-gradient(180deg, var(--gradient-start) 0%, #00B4D8 100%); box-shadow: 0 6px 20px rgba(0,217,255,0.25);"></div>
+                        <div style="font-size: 10pt; font-weight: 700; color: var(--text-dark);">5 000 min</div>
+                        <div style="font-size: 9.5pt; font-weight: 800; background: linear-gradient(135deg, var(--gradient-start), #00B4D8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-top: 2px;">2 250 zł / mies.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SMS -->
+            <div style="margin-top: 16px; padding: 20px 28px; border-radius: 16px; background: #fff; border: 1px solid rgba(0,217,255,0.2); box-shadow: 0 2px 16px rgba(0,217,255,0.06); display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                    <div style="font-size: 10pt; font-weight: 800; color: var(--text-dark);">Pakiet SMS — 1 500 SMS</div>
+                    <div style="font-size: 8.5pt; color: var(--text-gray); margin-top: 2px;">Stawka: 0,20 zł / SMS</div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 14pt; font-weight: 800; background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">300 zł <span style="font-size: 9pt; font-weight: 600;">/ mies.</span></div>
+                    <div style="font-size: 8pt; color: var(--text-gray);">1 500 SMS × 0,20 zł</div>
+                </div>
+            </div>
+
+            <!-- Tabela zbiorcza -->
+            <div class="table-wrap" style="margin-top: 22px;">
+                <table>
+                    <tr>
+                        <th>Element oferty</th>
+                        <th style="text-align: center;">Warunki</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Koszt wdrożenia</strong> (2 placówki)</td>
+                        <td style="text-align: center; font-weight: 600; color: var(--gradient-mid);">10 000 zł netto</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Integracja</strong></td>
+                        <td style="text-align: center; font-weight: 600;">Booksy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pakiet 2 000 minut</strong></td>
+                        <td style="text-align: center; font-weight: 600; color: var(--gradient-mid);">1 100 zł / mies. (0,55 zł/min)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pakiet 3 000 minut</strong></td>
+                        <td style="text-align: center; font-weight: 600; color: var(--gradient-mid);">1 500 zł / mies. (0,50 zł/min)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pakiet 5 000 minut</strong></td>
+                        <td style="text-align: center; font-weight: 600; color: var(--gradient-mid);">2 250 zł / mies. (0,45 zł/min)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stawka za SMS</strong></td>
+                        <td style="text-align: center; font-weight: 600; color: var(--gradient-mid);">0,20 zł</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pakiet 1 500 SMS</strong></td>
+                        <td style="text-align: center; font-weight: 600; color: var(--gradient-mid);">300 zł / mies.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Okres wypowiedzenia</strong></td>
+                        <td style="text-align: center;">1 miesiąc</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Czas trwania umowy</strong></td>
+                        <td style="text-align: center;">Nieokreślony</td>
+                    </tr>
+                </table>
+            </div>
+            <p style="font-size: 9pt; color: var(--text-gray); margin-top: 8px;">Wszystkie ceny podane w kwotach netto.</p>
+
+            <div class="summary-grid">
+                <div class="summary-box">
+                    <div class="summary-label">Koszt jednorazowy — wdrożenie</div>
+                    <div class="summary-value gradient">10 000 zł</div>
+                    <div class="summary-detail">2 placówki + integracja Booksy</div>
+                </div>
+                <div class="summary-box">
+                    <div class="summary-label">Szacowany koszt miesięczny (pakiet 3 000 min)</div>
+                    <div class="summary-value green">1 800 zł</div>
+                    <div class="summary-detail">1 500 zł pakiet minut + 300 zł pakiet SMS</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kontakt -->
+        <div style="margin-top: 10px; padding: 28px 32px; border-radius: 16px; background: linear-gradient(135deg, rgba(0,217,255,0.08) 0%, rgba(123,44,191,0.14) 100%); border: 2px solid rgba(123,44,191,0.3); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));"></div>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div style="font-size: 12pt; font-weight: 800; background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Kontakt — VoiceLink</div>
+                <div style="font-size: 9pt; color: var(--text-gray); margin-top: 4px;">Zapraszamy do kontaktu w celu omówienia szczegółów wdrożenia</div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="padding: 18px 20px; border-radius: 12px; background: rgba(255,255,255,0.7); border: 1px solid rgba(0,217,255,0.2); text-align: center;">
+                    <div style="width: 56px; height: 56px; margin: 0 auto 12px; border-radius: 50%; background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid)); padding: 3px; box-shadow: 0 4px 12px rgba(0,217,255,0.2);">
+                        <img src="karol.jpg" alt="Karol Kulis" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block;">
+                    </div>
+                    <div style="font-size: 10.5pt; font-weight: 800; color: var(--text-dark); margin-bottom: 6px;">Karol Kulis</div>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 4px;">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--gradient-mid)"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        <div style="font-size: 9pt; color: var(--gradient-mid); font-weight: 600;">karol.kulis@voicelink.pl</div>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 6px;">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--gradient-mid)"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+                        <div style="font-size: 9pt; color: var(--text-dark); font-weight: 600;">603 076 043</div>
+                    </div>
+                </div>
+                <div style="padding: 18px 20px; border-radius: 12px; background: rgba(255,255,255,0.7); border: 1px solid rgba(0,217,255,0.2); text-align: center;">
+                    <div style="width: 56px; height: 56px; margin: 0 auto 12px; border-radius: 50%; background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid)); padding: 3px; box-shadow: 0 4px 12px rgba(0,217,255,0.2);">
+                        <img src="jan.png" alt="Jan Zieliński" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; background: #fff;">
+                    </div>
+                    <div style="font-size: 10.5pt; font-weight: 800; color: var(--text-dark); margin-bottom: 6px;">Jan Zieliński</div>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 4px;">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--gradient-mid)"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        <div style="font-size: 9pt; color: var(--gradient-mid); font-weight: 600;">jan.zielinski@voicelink.pl</div>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 6px;">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--gradient-mid)"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+                        <div style="font-size: 9pt; color: var(--text-dark); font-weight: 600;">735 025 087</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
